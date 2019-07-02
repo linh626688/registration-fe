@@ -1,0 +1,9 @@
+.back-ground {
+    background: aliceblue;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.row {
+    margin-bottom: 10px;
+}
