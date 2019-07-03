@@ -7,3 +7,12 @@
 .row {
     margin-bottom: 10px;
 }
+
+.disable-div {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.bg-btn {
+    background-color: #9c27b0 !important;
+}
