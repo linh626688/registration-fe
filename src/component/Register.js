@@ -13,6 +13,7 @@ class Register extends Component {
       textErr: '',
       textSuccess: '',
       isSuccess: false,
+      isDisableForm: false,
       form: {
         firstName: '',
         lastName: '',
@@ -154,6 +155,7 @@ class Register extends Component {
         email: form.email,
         dateOfBirth: (form.dateOfBirth && form.monthOfBirth && form.yearOfBirth) ? `${form.yearOfBirth}-${this.convertNumberToString(form.monthOfBirth)}-${this.convertNumberToString(form.dateOfBirth)}` : null,
       }
+      this.setState({isDisableForm: true});
       UserServices.doRegister(payload)
         .then(response => {
           if (response.data.header.success) {
@@ -163,6 +165,7 @@ class Register extends Component {
             }, 2000)
           } else {
             let error = response.data.body.errors[0].errorCode
+            this.setState({isDisableForm: false});
             switch (error) {
               case EXCEPTION.EMAIL_IS_EXITS:
                 this.setState({textErr: "Email has been used"});
@@ -185,12 +188,12 @@ class Register extends Component {
   }
 
   render() {
-    const {days, months, years, form, textErr, textSuccess, isSuccess} = this.state
+    const {days, months, years, form, textErr, textSuccess, isSuccess, isDisableForm} = this.state
     return (
       <div>
         <div className="back-ground">
           <Container>
-            <Row className={isSuccess ? "disable-div" : ''}>
+            <Row className={isDisableForm ? "disable-div" : ''}>
               <Col xs="6">
                 <Row>
                   <Col xs="4" className="p-0">
