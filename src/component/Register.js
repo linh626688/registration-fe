@@ -150,7 +150,7 @@ class Register extends Component {
         firstName: form.firstName,
         lastName: form.lastName,
         phoneNumber: form.mobileNumber,
-        gender: form.gender,
+        gender: form.gender ? form.gender : null,
         email: form.email,
         dateOfBirth: (form.dateOfBirth && form.monthOfBirth && form.yearOfBirth) ? `${form.yearOfBirth}-${this.convertNumberToString(form.monthOfBirth)}-${this.convertNumberToString(form.dateOfBirth)}` : null,
       }
